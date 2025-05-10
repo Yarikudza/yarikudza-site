@@ -1,14 +1,31 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <!-- SEO -->
+    <meta name="description" content="Официальный сайт сервера Farming Simulator 25 [BANDA]. Веселый кооп, квесты и трактора в заносе!">
+    <meta property="og:title" content="Farming Simulator 25 — Сервер BANDA">
+    <meta property="og:description" content="Играйте с нами, стройте ферму и достигайте новых высот!">
+    <meta property="og:image" content="https://media.discordapp.net/attachments/1325821147450970143/1356672898340884550/a7ace6b5-a2dc-4b56-bcd3-5e6f60fbb0f9.png">
+    <link rel="icon" href="https://www.farming-simulator.com/favicon.ico">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Farming Simulator 25</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
-    <!-- Подключение Font Awesome для иконок -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        /* Основные стили */
+        html {
+            scroll-behavior: smooth;
+        }
+        :root {
+            --bg-color: #111;
+            --text-color: white;
+        }
+        body.light-mode {
+            --bg-color: #f0f0f0;
+            --text-color: #111;
+        }
         * {
             margin: 0;
             padding: 0;
@@ -16,15 +33,57 @@
         }
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #111;
-            color: white;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             line-height: 1.5;
+            padding-top: 70px;
         }
         h1, h2, p {
             font-family: 'Space Grotesk', sans-serif;
         }
 
-        /* Главная секция с фоном */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 10;
+        }
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .navbar .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        .navbar .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .navbar .nav-links a:hover {
+            color: #4CAF50;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background: #333;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            cursor: pointer;
+            border-radius: 6px;
+            z-index: 1000;
+        }
+
         header {
             background-image: url('https://media.discordapp.net/attachments/1325821147450970143/1356672898340884550/a7ace6b5-a2dc-4b56-bcd3-5e6f60fbb0f9.png?ex=68202d58&is=681edbd8&hm=59e3d9cfcea813b31dc3f89b41cc178a163f41b5b0646151d69ce887f4080142&=&format=webp&quality=lossless');
             background-size: cover;
@@ -38,8 +97,6 @@
             position: relative;
             z-index: 1;
         }
-
-        /* Псевдоэлемент для затемнения фона */
         header::after {
             content: '';
             position: absolute;
@@ -47,10 +104,9 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.5); /* Черный фон с 50% прозрачностью */
-            z-index: -1; /* Фон будет находиться под контентом */
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
         }
-
         header h1 {
             font-size: 60px;
             text-transform: uppercase;
@@ -80,7 +136,6 @@
             background-color: #388E3C;
         }
 
-        /* Секции с контентом */
         section {
             padding: 60px 20px;
             text-align: center;
@@ -115,21 +170,11 @@
             color: white;
         }
 
-        /* Секция "Новости" */
         .news {
             background-color: #222;
             padding: 60px 20px;
         }
-        .news h2 {
-            font-size: 40px;
-            margin-bottom: 20px;
-        }
-        .news p {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
 
-        /* Анимации */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -141,7 +186,6 @@
             }
         }
 
-        /* Адаптивность */
         @media (max-width: 768px) {
             header h1 {
                 font-size: 40px;
@@ -152,12 +196,39 @@
             section p {
                 font-size: 18px;
             }
+            .navbar .nav-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        .swiper {
+            width: 90%;
+            height: 400px;
+            margin: auto;
+        }
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
         }
     </style>
 </head>
 <body>
 
-<header>
+<button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+
+<nav class="navbar">
+  <div class="logo">🚜 BANDA</div>
+  <ul class="nav-links">
+    <li><a href="#about">О нас</a></li>
+    <li><a href="#features">Фишки</a></li>
+    <li><a href="#join">Контакты</a></li>
+  </ul>
+</nav>
+
+<header data-aos="fade-up">
     <div>
         <h1>Добро пожаловать на сервер [BANDA]</h1>
         <p>Играйте с нами, стройте ферму и достигайте новых высот!</p>
@@ -165,31 +236,64 @@
     </div>
 </header>
 
-<section>
+<section id="features" data-aos="fade-up">
     <h2>Наши возможности</h2>
-    <p>BANDA | FS25 — веселый кооп, квесты и трактора в заносе!  </p>
+    <p>BANDA | FS25 — веселый кооп, квесты и трактора в заносе!</p>
 </section>
 
-<section>
+<section id="join" data-aos="fade-up">
     <h2>Присоединяйтесь к нам</h2>
     <p>Будьте в курсе всех событий и общайтесь с другими игроками в Discord, Telegram и TikTok.</p>
     <div class="social-links">
-        <a href="https://discord.gg/Ea9WccNpAk" target="_blank">
-            <i class="fab fa-discord"></i>
-        </a>
-        <a href="https://t.me/farm24na7" target="_blank">
-            <i class="fab fa-telegram-plane"></i>
-        </a>
-        <a href="https://www.tiktok.com/@farm24na7" target="_blank">
-            <i class="fab fa-tiktok"></i>
-        </a>
+        <a href="https://discord.gg/Ea9WccNpAk" target="_blank"><i class="fab fa-discord"></i></a>
+        <a href="https://t.me/farm24na7" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+        <a href="https://www.tiktok.com/@farm24na7" target="_blank"><i class="fab fa-tiktok"></i></a>
     </div>
 </section>
 
-<section class="news">
-    <h2>Новости сервера</h2>
-    <p>Обновление 1.0: Запуск в тестом режиме сайт </p>
+<section id="screenshots" data-aos="fade-up">
+    <h2>Скриншоты с сервера</h2>
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="https://media.discordapp.net/attachments/1325855214494027877/1362512112492220466/image.png?ex=68205389&is=681f0209&hm=b72da8ca6c2b60ab9ff6fbbe83290ce79f680ced38df4a4ab7a81519bce205e1&=&format=webp&quality=lossless&width=550&height=309" alt="Скриншот 1"></div>
+            <div class="swiper-slide"><img src="https://media.discordapp.net/attachments/1325855214494027877/1356770416584298536/image.png?ex=681fdf6a&is=681e8dea&hm=a4f66e84d5aca17693b90202e764f11218190923c364a852e1c7a7dcf3c19571&=&format=webp&quality=lossless" alt="Скриншот 2"></div>
+            <div class="swiper-slide"><img src="https://media.discordapp.net/attachments/1325855214494027877/1352376516088168478/image.png?ex=68205e07&is=681f0c87&hm=725bf71e7c871652e7ffa5b15193f2e90da540eadf8e0b4503cf619ce439169e&=&format=webp&quality=lossless" alt="Скриншот 3"></div>
+            <div class="swiper-slide"><img src="https://media.discordapp.net/attachments/1325855214494027877/1348128432646525019/2025-03-09_06-00-21.png?ex=682012f1&is=681ec171&hm=7736c629c6463cf2480058e4a0ad727cfa33e060e481edbf108191dcde447c76&=&format=webp&quality=lossless&width=1521&height=856" alt="Скриншот 4"></div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
 </section>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script>
+  const swiper = new Swiper(".mySwiper", {
+    loop: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+  });
+</script>
+
+<section class="news" id="about" data-aos="fade-up">
+    <h2>Новости сервера</h2>
+    <p>Обновление 1.0: Запуск сайта в тестовом режиме</p>
+</section>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+  function toggleTheme() {
+      document.body.classList.toggle('light-mode');
+      localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+  }
+  window.addEventListener('DOMContentLoaded', () => {
+      if (localStorage.getItem('theme') === 'light') {
+          document.body.classList.add('light-mode');
+      }
+  });
+</script>
 
 </body>
 </html>
