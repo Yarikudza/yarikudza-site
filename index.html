@@ -2,12 +2,159 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>yarikudza.top</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farming Simulator 25 - Сервер</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+        }
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        section {
+            padding: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .leaderboard {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .leaderboard th, .leaderboard td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .leaderboard th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .social-links a {
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        .social-links img {
+            width: 40px;
+            height: 40px;
+        }
+    </style>
 </head>
 <body>
-  <h1>Привет! Это мой сайт 🚀</h1>
-  <p>Добро пожаловать на yarikudza.top</p>
+
+<header>
+    <h1>Добро пожаловать на сервер Farming Simulator 25</h1>
+    <p>Играй, зарабатывай и развивай свой фермерский бизнес!</p>
+</header>
+
+<nav>
+    <a href="#news">Новости</a>
+    <a href="#leaderboard">Таблица лидеров</a>
+    <a href="#rules">Правила</a>
+    <a href="#contact">Контакты</a>
+</nav>
+
+<section id="news">
+    <h2>Новости сервера</h2>
+    <p>Здесь можно размещать новости о событиях на сервере, обновлениях и турнирах.</p>
+    <ul>
+        <li>Обновление 1.1: Новые миссии для игроков!</li>
+        <li>Скоро стартует новый турнир среди фермеров!</li>
+        <li>Добавлены новые фермерские техники на сервере.</li>
+    </ul>
+</section>
+
+<section id="leaderboard">
+    <h2>Таблица лидеров</h2>
+    <table class="leaderboard">
+        <thead>
+            <tr>
+                <th>Место</th>
+                <th>Игрок</th>
+                <th>Очки</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Фермер1</td>
+                <td>1500</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Фермер2</td>
+                <td>1200</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Фермер3</td>
+                <td>1000</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section id="rules">
+    <h2>Правила сервера</h2>
+    <ul>
+        <li>Запрещено использование читов и багов.</li>
+        <li>Будьте вежливыми и уважайте других игроков.</li>
+        <li>Соблюдайте правила честной игры.</li>
+    </ul>
+</section>
+
+<section id="contact">
+    <h2>Контакты</h2>
+    <p>Если у вас возникли вопросы, пишите нам на почту: <strong>support@farming25server.com</strong></p>
+    <p>Присоединяйтесь к нашему сообществу в социальных сетях:</p>
+    <div class="social-links">
+        <a href="https://discord.gg/yourdiscordlink" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Discord_logo_2023.svg/1200px-Discord_logo_2023.svg.png" alt="Discord">
+        </a>
+        <a href="https://t.me/yourtelegramlink" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Telegram_logo.svg/1024px-Telegram_logo.svg.png" alt="Telegram">
+        </a>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2025 Farming Simulator 25 - Все права защищены.</p>
+</footer>
+
 </body>
 </html>
