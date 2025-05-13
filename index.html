@@ -10,7 +10,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farming Simulator 25</title>
+    <title>[BANDA]</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -53,10 +53,20 @@
             top: 0;
             z-index: 10;
         }
-        .navbar .logo {
+
+        /* 🔁 Кликабельная кнопка BANDA */
+        .logo-link {
+            color: white;
+            text-decoration: none;
             font-size: 24px;
             font-weight: bold;
+            transition: color 0.3s ease;
         }
+
+        .logo-link:hover {
+            color: #4CAF50;
+        }
+
         .navbar .nav-links {
             list-style: none;
             display: flex;
@@ -219,13 +229,16 @@
 
 <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
 
+<!-- 🔁 Обновлённая навигация -->
 <nav class="navbar">
-  <div class="logo">🚜 BANDA</div>
+  <div class="logo">
+    <a href="/" class="logo-link">🚜 BANDA</a>
+  </div>
   <ul class="nav-links">
     <li><a href="about.html">О нас</a></li>
-	<li><a href="https://docs.google.com/spreadsheets/d/13M02XdmQ9hI5PImNrTLIfE0CLQVwT6TXRePGisEwRj0/edit?gid=1257314286#gid=1257314286" target="_blank">План работы</a></li>
+    <li><a href="https://docs.google.com/spreadsheets/d/13M02XdmQ9hI5PImNrTLIfE0CLQVwT6TXRePGisEwRj0/edit?gid=1257314286#gid=1257314286" target="_blank">План работы</a></li>
     <li><a href="#features">Фишки</a></li>
-	 <li><a href="rules.html" target="_blank">Правила игры</a></li>
+    <li><a href="rules.html" target="_blank">Правила игры</a></li>
     <li><a href="#join">Контакты</a></li>
   </ul>
 </nav>
