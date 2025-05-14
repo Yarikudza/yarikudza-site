@@ -223,6 +223,36 @@
             object-fit: cover;
             border-radius: 12px;
         }
+		.burger {
+    display: none;
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
+    z-index: 11;
+}
+
+@media (max-width: 768px) {
+    .burger {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.95);
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+        width: 200px;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+    }
+
+    .nav-links.active {
+        transform: translateX(0);
+    }
+}
     </style>
 </head>
 <body>
@@ -234,7 +264,8 @@
   <div class="logo">
     <a href="/" class="logo-link">🚜 BANDA</a>
   </div>
-  <ul class="nav-links">
+  <div class="burger" id="burger">&#9776;</div>
+  <ul class="nav-links" id="navLinks">
     <li><a href="about.html">О нас</a></li>
     <li><a href="https://docs.google.com/spreadsheets/d/13M02XdmQ9hI5PImNrTLIfE0CLQVwT6TXRePGisEwRj0/edit?gid=1257314286#gid=1257314286" target="_blank">План работы</a></li>
     <li><a href="#features">Фишки</a></li>
@@ -242,6 +273,7 @@
     <li><a href="#join">Контакты</a></li>
   </ul>
 </nav>
+
 
 <header data-aos="fade-up">
     <div>
@@ -312,6 +344,13 @@
       if (localStorage.getItem('theme') === 'light') {
           document.body.classList.add('light-mode');
       }
+  });
+</script>
+<script>
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
   });
 </script>
 
