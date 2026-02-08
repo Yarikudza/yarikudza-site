@@ -1,350 +1,1101 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Роли на ферме — Farming Simulator</title>
+    <!-- SEO -->
+    <meta name="description" content="Роли на сервере Farming Simulator 25 [BANDA]. Все ключевые и вспомогательные должности на нашей ферме.">
+    <meta property="og:title" content="Роли на ферме — Farming Simulator 25 BANDA">
+    <meta property="og:description" content="Выбери свою роль на нашей ферме! От главы фермы до начинающего помощника.">
+    <meta property="og:image" content="https://i.imgur.com/SUjEJpk.png">
+    <link rel="icon" href="https://i.imgur.com/SUjEJpk.png" type="image/png">
 
-<style>
-  :root {
-    --accent-color: #4caf50;
-    --bg-color: #121212;
-    --text-color: #eee;
-    --highlight-color: #FFD54F;
-    --menu-bg: rgba(0,0,0,0.85);
-    --menu-hover: #4caf50;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Роли на ферме | Farming Simulator 25 — BANDA</title>
+    
+    <!-- Подключаемые библиотеки -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #4CAF50;
+            --primary-dark: #388E3C;
+            --primary-light: #C8E6C9;
+            --secondary: #FF9800;
+            --secondary-dark: #F57C00;
+            --accent: #2196F3;
+            --accent-dark: #1976D2;
+            --dark: #0A0A0A;
+            --dark-secondary: #1A1A1A;
+            --light: #f8f9fa;
+            --gray: #2d2d2d;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --gradient: linear-gradient(135deg, var(--primary), var(--accent));
+        }
 
-  body {
-    background: var(--bg-color);
-    color: var(--text-color);
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    line-height: 1.6;
-    padding-top: 70px; /* Отступ под фиксированное меню */
-  }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  /* ===== Navbar ===== */
-  .navbar {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    width: 100%;
-    background: var(--menu-bg);
-    z-index: 1000;
-  }
-  .navbar-inner {
-    max-width: 1900px;
-    margin: 0 auto;
-    padding: 15px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .logo-link {
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--text-color);
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  .logo-link:hover {
-    color: var(--menu-hover);
-  }
-  .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    margin: 0;
-    padding: 0;
-  }
-  .nav-links a {
-    color: var(--text-color);
-    text-decoration: none;
-    font-size: 18px;
-    transition: color 0.3s;
-  }
-  .nav-links a:hover {
-    color: var(--menu-hover);
-  }
-  .burger {
-    display: none;
-    font-size: 28px;
-    color: var(--text-color);
-    cursor: pointer;
-    z-index: 1001;
-  }
+        html {
+            scroll-behavior: smooth;
+        }
 
-  /* ===== Mobile ===== */
-  @media (max-width: 768px) {
-    .burger {
-      display: block;
-    }
-    .nav-links {
-      position: absolute;
-      top: 70px;
-      right: 0;
-      flex-direction: column;
-      background: rgba(0,0,0,0.95);
-      width: 220px;
-      padding: 25px 20px;
-      gap: 18px;
-      transform: translateX(100%);
-      transition: transform 0.3s ease;
-    }
-    .nav-links.active {
-      transform: translateX(0);
-    }
-  }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
 
-  /* ===== Main content ===== */
-  main {
-    max-width: 900px;
-    margin: 0 auto 50px;
-    padding: 0 20px;
-  }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(76, 175, 80, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(33, 150, 243, 0.1) 0%, transparent 50%);
+            z-index: -2;
+        }
 
-  h1 {
-    font-size: 36px;
-    margin-bottom: 40px;
-    text-align: center;
-    color: var(--accent-color);
-    text-shadow: 0 0 10px rgba(76, 175, 80, 0.8);
-  }
+        h1, h2, h3, h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
 
-  .rule-block {
-    background: #1f1f1f;
-    padding: 30px 25px;
-    border-left: 6px solid var(--accent-color);
-    border-radius: 10px;
-    margin-bottom: 40px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
-  .rule-block.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .rule-block h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
-    color: var(--accent-color);
-    text-shadow: 0 0 5px rgba(76,175,80,0.8);
-  }
-  .rule-block ul {
-    list-style: none;
-    padding-left: 0;
-  }
-  .rule-block ul li {
-    margin-bottom: 18px;
-    padding-left: 40px;
-    position: relative;
-    font-size: 18px;
-    color: var(--text-color);
-  }
-  .rule-block ul li strong {
-    display: block;
-    font-weight: 700;
-    font-size: 20px;
-    margin-bottom: 5px;
-    color: var(--highlight-color);
-  }
-  .rule-block ul li::before {
-    content: attr(data-icon);
-    position: absolute;
-    left: 10px;
-    top: 0;
-    font-size: 24px;
-    line-height: 1;
-    color: var(--accent-color);
-  }
+        /* Навигация */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 5%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 2px solid transparent;
+            background-image: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+            background-size: 0% 2px;
+            background-repeat: no-repeat;
+            background-position: 0 100%;
+            transition: var(--transition);
+        }
 
-  hr.splitter {
-    border: none;
-    border-top: 1px solid #333;
-    margin: 40px 0;
-  }
-</style>
+        .navbar.scrolled {
+            padding: 15px 5%;
+            background-size: 100% 2px;
+            background-color: rgba(10, 10, 10, 0.98);
+            box-shadow: var(--shadow);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-link {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: var(--transition);
+        }
+
+        .logo-link:hover {
+            color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: var(--transition);
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a.active {
+            background: var(--gradient);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .burger {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--light);
+            transition: var(--transition);
+            z-index: 1001;
+        }
+
+        .burger:hover {
+            color: var(--primary);
+            transform: rotate(90deg);
+        }
+
+        /* Кнопки */
+        .btn {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(76, 175, 80, 0.4);
+        }
+
+        /* Хедер */
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 100px;
+            background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.95)), 
+                        url('https://i.imgur.com/veJUOVW.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 5px 25px rgba(0,0,0,0.5);
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        /* Основной контент */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        /* Блоки ролей */
+        .roles-section {
+            margin-bottom: 80px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: var(--gradient);
+            border-radius: 3px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.8;
+        }
+
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .role-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 30px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .role-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--gradient);
+            transform: scaleY(0);
+            transition: var(--transition);
+            transform-origin: bottom;
+        }
+
+        .role-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .role-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(76, 175, 80, 0.15);
+        }
+
+        .role-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .role-icon {
+            font-size: 40px;
+            color: var(--primary);
+            width: 70px;
+            height: 70px;
+            background: rgba(76, 175, 80, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .role-title {
+            font-size: 1.5rem;
+            color: var(--light);
+            margin: 0;
+        }
+
+        .role-description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .role-responsibilities {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .responsibilities-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .responsibilities-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .responsibilities-list li {
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .responsibilities-list li::before {
+            content: '→';
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+        }
+
+        /* Категории ролей */
+        .category-label {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .category-key {
+            background: rgba(76, 175, 80, 0.2);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .category-specialized {
+            background: rgba(33, 150, 243, 0.2);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+        }
+
+        .category-operational {
+            background: rgba(255, 152, 0, 0.2);
+            color: var(--secondary);
+            border: 1px solid var(--secondary);
+        }
+
+        .category-additional {
+            background: rgba(156, 39, 176, 0.2);
+            color: #9C27B0;
+            border: 1px solid #9C27B0;
+        }
+
+        /* Футер */
+        footer {
+            background: linear-gradient(to bottom, var(--dark), #000);
+            padding: 60px 20px 30px;
+            text-align: center;
+            position: relative;
+            border-top: 2px solid var(--primary);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--primary);
+        }
+
+        .copyright {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Прогресс скролла */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--gradient);
+            z-index: 1001;
+            transition: width 0.1s;
+        }
+
+        /* Кастомный скроллбар */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient);
+            border-radius: 5px;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .roles-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                flex-direction: column;
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(20px);
+                width: 300px;
+                height: calc(100vh - 80px);
+                padding: 40px;
+                transition: var(--transition);
+                box-shadow: -10px 0 30px rgba(0,0,0,0.3);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .burger {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .role-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+
+            .role-icon {
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .role-card {
+                padding: 20px;
+            }
+            
+            .roles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<!-- ===== Navbar ===== -->
-<nav class="navbar">
-  <div class="navbar-inner">
-    <a href="/" class="logo-link">🚜 BANDA</a>
-    <div class="burger" id="burger">&#9776;</div>
+<!-- Прогресс скролла -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Навигация -->
+<nav class="navbar" id="navbar">
+    <div class="logo">
+        <a href="/" class="logo-link">
+            <i class="fas fa-tractor"></i>
+            <span>BANDA</span>
+        </a>
+    </div>
+    
+    <div class="burger" id="burger">
+        <i class="fas fa-bars"></i>
+    </div>
+    
     <ul class="nav-links" id="navLinks">
-      <li><a href="about.html">О нас</a></li>
-	  <li><a href="http://mods.banda-farm.ru:20011/all_mods_download?onlyActive=true" download>Скачать моды</a></li>
-      <li><a href="https://docs.google.com/spreadsheets/d/13M02XdmQ9hI5PImNrTLIfE0CLQVwT6TXRePGisEwRj0/edit?gid=1257314286#gid=1257314286" target="_blank" rel="noopener">План работы</a></li>
-      <li><a href="roles.html">Роли</a></li>
-      <li><a href="rules.html">Правила игры</a></li>
-      <li><a href="index.html#join">Контакты</a></li>
+        <li><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
+        <li><a href="index.html#about"><i class="fas fa-info-circle"></i> О сервере</a></li>
+        <li><a href="http://mods.banda-farm.ru:20011/all_mods_download?onlyActive=true" download>
+            <i class="fas fa-download"></i> Моды
+        </a></li>
+        <li><a href="https://docs.google.com/spreadsheets/d/13M02XdmQ9hI5PImNrTLIfE0CLQVwT6TXRePGisEwRj0/edit?gid=1257314286#gid=1257314286" target="_blank">
+            <i class="fas fa-calendar-alt"></i> План работы
+        </a></li>
+        <li><a href="rules.html"><i class="fas fa-book"></i> Правила</a></li>
+        <li><a href="#" class="active"><i class="fas fa-user-tag"></i> Роли</a></li>
+        <li><a href="index.html#contact"><i class="fas fa-users"></i> Сообщество</a></li>
     </ul>
-  </div>
 </nav>
 
-<main>
-  <h1>👨‍🌾 Ключевые и вспомогательные роли на ферме</h1>
-
-  <section id="key-positions" class="rule-block">
-    <h2>🔑 Ключевые должности</h2>
-    <ul>
-      <li data-icon="🧢">
-        <strong>Глава фермы / Фермерский магнат</strong>
-        Руководит всеми процессами на ферме.<br>
-        Принимает стратегические решения: посев, техника, ресурсы.
-      </li>
-      <li data-icon="👔">
-        <strong>Заместитель главы / Агродиректор</strong>
-        Правая рука главы фермы.<br>
-        Организует повседневные работы, управляет заданиями команды и следит за выполнением планов.
-      </li>
-      <li data-icon="📋">
-        <strong>Координатор операций / Оперативный менеджер</strong>
-        Следит за слаженной работой всех отделов.<br>
-        Решает текущие задачи и проблемы.
-      </li>
-      <li data-icon="🧑‍💼">
-        <strong>Отдел кадров / HR-менеджер</strong>
-        Набор, обучение и поддержка игроков.<br>
-        Развитие и мотивация команды.
-      </li>
-    </ul>
-  </section>
-
-  <hr class="splitter">
-
-  <section id="specialized-positions" class="rule-block">
-    <h2>🧪 Специализированные должности</h2>
-    <ul>
-      <li data-icon="🌾">
-        <strong>Агроном / Учёный полей</strong>
-        Исследует почву, подбирает культуры.<br>
-        Повышает урожайность.
-      </li>
-      <li data-icon="🔧">
-        <strong>Техник / Инженер</strong>
-        Обслуживает и ремонтирует технику.<br>
-        Проводит профилактику и планирует закупки.
-      </li>
-      <li data-icon="🐄">
-        <strong>Животновод / Пастух</strong>
-        Уход за животными.<br>
-        Контроль здоровья и размножения скота.
-      </li>
-    </ul>
-  </section>
-
-  <hr class="splitter">
-
-  <section id="operational-positions" class="rule-block">
-    <h2>🛠 Оперативные должности</h2>
-    <ul>
-      <li data-icon="💰">
-        <strong>Финансист / Эконом фермы</strong>
-        Ведёт бюджет и фин. отчёты.<br>
-        Контролирует доходы и расходы.
-      </li>
-      <li data-icon="🚜">
-        <strong>Полевой мастер / Механизатор</strong>
-        Сеет, пашет, собирает.<br>
-        Владеет трактором как продолжением руки.
-      </li>
-      <li data-icon="🚚">
-        <strong>Логист / Транспортировщик</strong>
-        Перевозит урожай, технику, ресурсы.<br>
-        Организует логистику между полями и складами.
-      </li>
-      <li data-icon="🏠">
-        <strong>Складмен / Хранитель запасов</strong>
-        Управляет ресурсами на складе.<br>
-        Семена, удобрения, корма — всё под контролем.
-      </li>
-      <li data-icon="🌳">
-        <strong>Ландшафтный дизайнер / Озеленитель</strong>
-        Украшает и облагораживает базу.<br>
-        Создаёт комфорт и уют.
-      </li>
-      <li data-icon="🧪">
-        <strong>Тестировщик техники / Испытатель</strong>
-        Проверяет новую технику.<br>
-        Делится отзывами и помогает выбрать лучшее.
-      </li>
-      <li data-icon="📈">
-        <strong>Специалист по продажам / Маркетолог</strong>
-        Продаёт продукцию фермы.<br>
-        Ищет новые рынки сбыта и клиентов.
-      </li>
-    </ul>
-  </section>
-
-  <hr class="splitter">
-
-<section id="additional-roles" class="rule-block">
-  <h2>🎖️ Дополнительные роли</h2>
-  <ul>
-    <li data-icon="🌱">
-      <strong>Начинающий фермер / Помощник на подхвате</strong>
-      Новички, которые учатся у старших.
-    </li>
-    <li data-icon="🧓">
-      <strong>Ветеран / Старожила</strong>
-      Игроки с опытом.<br>
-      Делятся знаниями и помогают другим.
-    </li>
-    <li data-icon="😈">
-      <strong>Хулиган</strong>
-      Нарушители порядка.<br>
-      Получают «воспитательные» обязанности.
-    </li>
-    <li data-icon="🏆">
-      <strong>Фермер месяца</strong>
-      Почётное звание за активность и вклад в ферму.
-    </li>
-    <li data-icon="🎧">
-      <strong>Диджей</strong>
-      Отвечает за музыку и настроение на ферме.
-    </li>
-    <li data-icon="🎬">
-      <strong>РП-режиссёр / Хроникер клана</strong>
-      Делает скрины, мемы, записывает летопись.<br>
-      Иногда снимает «фермерское кино».
-    </li>
-    <li data-icon="👀">
-      <strong>Прохожий</strong>
-      Временный гость.<br>
-      Просто смотрит, чем мы тут живём.
-    </li>
-  </ul>
+<!-- Хедер -->
+<section class="hero">
+    <div class="hero-content" data-aos="fade-up">
+        <h1>👨‍🌾 РОЛИ НА ФЕРМЕ</h1>
+        <p class="hero-subtitle">Выбери свою роль в нашем фермерском сообществе. Каждый важен!</p>
+        <button class="btn" onclick="scrollToSection('#roles')" style="margin-top: 20px;">
+            <i class="fas fa-search"></i> Найти свою роль
+        </button>
+    </div>
 </section>
 
+<!-- Основной контент -->
+<main>
+    <!-- Введение -->
+    <div class="roles-section" data-aos="fade-up">
+        <div class="section-header">
+            <h2 class="section-title">Найди свое место</h2>
+            <p class="section-subtitle">
+                На нашей ферме каждый может найти роль по душе. От стратегического планирования до практической работы в поле — 
+                мы ценим вклад каждого игрока.
+            </p>
+        </div>
+    </div>
+
+    <!-- Ключевые роли -->
+    <div class="roles-section" id="roles" data-aos="fade-up">
+        <div class="section-header">
+            <h2 class="section-title">Ключевые должности</h2>
+            <p class="section-subtitle">Стратеги и лидеры, которые ведут ферму к успеху</p>
+        </div>
+        
+        <div class="roles-grid">
+            <div class="role-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="category-label category-key">Лидерство</div>
+                <div class="role-header">
+                    <div class="role-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3 class="role-title">Глава фермы</h3>
+                </div>
+                <div class="role-description">
+                    Главный стратег и руководитель всех процессов на ферме. Принимает ключевые решения о развитии.
+                </div>
+                <div class="role-responsibilities">
+                    <div class="responsibilities-title">Обязанности:</div>
+                    <ul class="responsibilities-list">
+                        <li>Стратегическое планирование развития</li>
+                        <li>Управление бюджетом и ресурсами</li>
+                        <li>Координация работы отделов</li>
+                        <li>Принятие ключевых решений</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="role-card" data-aos="fade-up" data-aos-delay="150">
+                <div class="category-label category-key">Менеджмент</div>
+                <div class="role-header">
+                    <div class="role-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3 class="role-title">Агродиректор</h3>
+                </div>
+                <div class="role-description">
+                    Правая рука главы фермы. Организует повседневную работу и следит за выполнением планов.
+                </div>
+                <div class="role-responsibilities">
+                    <div class="responsibilities-title">Обязанности:</div>
+                    <ul class="responsibilities-list">
+                        <li>Организация ежедневных работ</li>
+                        <li>Контроль выполнения заданий</li>
+                        <li>Решение текущих проблем</li>
+                        <li>Отчетность перед главой</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="role-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="category-label category-key">Организация</div>
+                <div class="role-header">
+                    <div class="role-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3 class="role-title">Координатор операций</h3>
+                </div>
+                <div class="role-description">
+                    Обеспечивает слаженную работу всех отделов. Решает оперативные задачи и распределяет ресурсы.
+                </div>
+                <div class="role-responsibilities">
+                    <div class="responsibilities-title">Обязанности:</div>
+                    <ul class="responsibilities-list">
+                        <li>Распределение заданий команде</li>
+                        <li>Контроль сроков выполнения</li>
+                        <li>Оптимизация рабочих процессов</li>
+                        <li>Решение текущих проблем</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="role-card" data-aos="fade-up" data-aos-delay="250">
+                <div class="category-label category-key">Команда</div>
+                <div class="role-header">
+                    <div class="role-icon">
+                        <i class="fas fa-users-cog"></i>
+                    </div>
+                    <h3 class="role-title">HR-менеджер</h3>
+                </div>
+                <div class="role-description">
+                    Отвечает за команду: набор, обучение и поддержку игроков. Создает комфортную атмосферу.
+                </div>
+                <div class="role-responsibilities">
+                    <div class="responsibilities-title">Обязанности:</div>
+                    <ul class="responsibilities-list">
+                        <li>Набор и обучение новичков</li>
+                        <li>Развитие команды</li>
+                        <li>Решение внутренних вопросов</li>
+                        <li>Создание позитивной атмосферы</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Специализированные роли -->
+    <div class="roles-section" data-aos="fade-up">
+        <div class="section-header">
+            <h2 class="section-title">Специализированные должности</h2>
+            <p class="section-subtitle">Эксперты в своих областях, которые обеспечивают качество работы</p>
+        </div>
+        
+        <div class="roles-grid">
+            <div class="role-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="category-label category-specialized">Агрономия</div>
+                <div class="role-header">
+                    <div class="role-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3 class="role-title">Агроном</h3>
+                </div>
+                <div class="role-description">
+                    Специалист по растениям и почве. Исследует, подбирает культуры и повышает урожайность.
+                </div>
+                <div class="role-responsibilities">
+                    <div class="responsibilities-title">Обязанности:</div>
+                    <ul class="responsibilities-list">
+                        <li>Исследование почвы</li>
+                        <li>Подбор оптимальных культур</li>
+                        <li>Планирование севооборота</li>
+                        <li>Повышение урожайности</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="role-card" data-aos="fade-up" data-aos-delay="150">
+                <div class="category-label category-specialized">Техника</div>
+                <div class="role-header">
+                    <div class="role-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="role-title">Техник</h3>
+                </div>
+                <div class="role-description">
+                    Главный по технике. Обслуживает, ремонтирует и следит за состоянием всего парка техники.
+                </div>
+                <div class="role-responsibilities">
+                    <div class="responsibilities-title">Обязанности:</div>
+                    <ul class="responsibilities-list">
+                        <li>Обслуживание техники</li>
+                        <li>Ремонт и профилактика</li>
+                        <li>Планирование закупок</li>
+                        <li>Контроль расходников</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="role-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="category-label category-specialized">Животноводство</div>
+                <div class="role-header">
+                    <div class="role-icon">
+                        <i class="fas fa-cow"></i>
+                    </div>
+                    <h3 class="role-title">Животновод</h3>
+                </div>
+                <div class="role-description">
+                    Заботится о животных фермы. Контролирует здоровье, питание и размножение скота.
+                </div>
+                <div class="role-responsibilities">
+                    <div class="responsibilities-title">Обязанности:</div>
+                    <ul class="responsibilities-list">
+                        <li>Уход за животными</li>
+                        <li>Контроль здоровья</li>
+                        <li>Разведение скота</li>
+                        <li>Заготовка кормов</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Оперативные роли -->
+    <div class="roles-section" data-aos="fade-up">
+        <div class="section-header">
+            <h2 class="section-title">Оперативные должности</h2>
+            <p class="section-subtitle">Практики, которые воплощают планы в реальность</p>
+        </div>
+        
+        <div class="roles-grid">
+            <div class="role-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="category-label category-operational">Финансы</div>
+                <div class="role-header">
+                    <div class="role-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="role-title">Финансист</h3>
+                </div>
+                <div class="role-description">
+                    Управляет бюджетом фермы. Ведет учет доходов и расходов, планирует финансовые операции.
+                </div>
+                <div class="role-responsibilities">
+                    <div class="responsibilities-title">Обязанности:</div>
+                    <ul class="responsibilities-list">
+                        <li>Ведение бюджета</li>
+                        <li>Финансовая отчетность</li>
+                        <li>Контроль доходов/расходов</li>
+                        <li>Планирование инвестиций</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="role-card" data-aos="fade-up" data-aos-delay="150">
+                <div class="category-label category-operational">Полевые работы</div>
+                <div class="role-header">
+                    <div class="role-icon">
+                        <i class="fas fa-tractor"></i>
+                    </div>
+                    <h3 class="role-title">Полевой мастер</h3>
+                </div>
+                <div class="role-description">
+                    Владеет трактором как продолжением руки. Сеет, пашет, собирает урожай с максимальной эффективностью.
+                </div>
+                <div class="role-responsibilities">
+                    <div class="responsibilities-title">Обязанности:</div>
+                    <ul class="responsibilities-list">
+                        <li>Посевные работы</li>
+                        <li>Обработка полей</li>
+                        <li>Уборка урожая</li>
+                        <li>Работа с техникой</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="role-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="category-label category-operational">Логистика</div>
+                <div class="role-header">
+                    <div class="role-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3 class="role-title">Логист</h3>
+                </div>
+                <div class="role-description">
+                    Организует перевозки по ферме. Оптимизирует маршруты и обеспечивает своевременную доставку.
+                </div>
+                <div class="role-responsibilities">
+                    <div class="responsibilities-title">Обязанности:</div>
+                    <ul class="responsibilities-list">
+                        <li>Перевозка урожая</li>
+                        <li>Доставка ресурсов</li>
+                        <li>Организация логистики</li>
+                        <li>Оптимизация маршрутов</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="role-card" data-aos="fade-up" data-aos-delay="250">
+                <div class="category-label category-operational">Склад</div>
+                <div class="role-header">
+                    <div class="role-icon">
+                        <i class="fas fa-warehouse"></i>
+                    </div>
+                    <h3 class="role-title">Складмен</h3>
+                </div>
+                <div class="role-description">
+                    Хранитель всех ресурсов фермы. Контролирует запасы и обеспечивает их сохранность.
+                </div>
+                <div class="role-responsibilities">
+                    <div class="responsibilities-title">Обязанности:</div>
+                    <ul class="responsibilities-list">
+                        <li>Учет запасов</li>
+                        <li>Хранение ресурсов</li>
+                        <li>Выдача материалов</li>
+                        <li>Контроль остатков</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Дополнительные роли -->
+    <div class="roles-section" data-aos="fade-up">
+        <div class="section-header">
+            <h2 class="section-title">Дополнительные роли</h2>
+            <p class="section-subtitle">Специальные позиции, которые делают ферму уникальной</p>
+        </div>
+        
+        <div class="roles-grid">
+            <div class="role-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="category-label category-additional">Обучение</div>
+                <div class="role-header">
+                    <div class="role-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3 class="role-title">Начинающий фермер</h3>
+                </div>
+                <div class="role-description">
+                    Новичок, который учится у опытных коллег. Помогает в простых задачах и набирается опыта.
+                </div>
+                <div class="role-responsibilities">
+                    <div class="responsibilities-title">Обязанности:</div>
+                    <ul class="responsibilities-list">
+                        <li>Обучение у старших</li>
+                        <li>Помощь в простых работах</li>
+                        <li>Изучение механик игры</li>
+                        <li>Активное участие</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="role-card" data-aos="fade-up" data-aos-delay="150">
+                <div class="category-label category-additional">Опыт</div>
+                <div class="role-header">
+                    <div class="role-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 class="role-title">Ветеран</h3>
+                </div>
+                <div class="role-description">
+                    Опытный игрок с богатым опытом. Делится знаниями и помогает новичкам освоиться на ферме.
+                </div>
+                <div class="role-responsibilities">
+                    <div class="responsibilities-title">Обязанности:</div>
+                    <ul class="responsibilities-list">
+                        <li>Консультация новичков</li>
+                        <li>Передача опыта</li>
+                        <li>Решение сложных задач</li>
+                        <li>Поддержка команды</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="role-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="category-label category-additional">Творчество</div>
+                <div class="role-header">
+                    <div class="role-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="role-title">Хроникер клана</h3>
+                </div>
+                <div class="role-description">
+                    Создает историю фермы. Делает скриншоты, записывает важные моменты и делится ими с сообществом.
+                </div>
+                <div class="role-responsibilities">
+                    <div class="responsibilities-title">Обязанности:</div>
+                    <ul class="responsibilities-list">
+                        <li>Создание скриншотов</li>
+                        <li>Запись важных событий</li>
+                        <li>Ведение летописи</li>
+                        <li>Делится контентом</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="role-card" data-aos="fade-up" data-aos-delay="250">
+                <div class="category-label category-additional">Развлечения</div>
+                <div class="role-header">
+                    <div class="role-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3 class="role-title">Диджей</h3>
+                </div>
+                <div class="role-description">
+                    Отвечает за атмосферу на ферме. Подбирает музыку и создает настроение для продуктивной работы.
+                </div>
+                <div class="role-responsibilities">
+                    <div class="responsibilities-title">Обязанности:</div>
+                    <ul class="responsibilities-list">
+                        <li>Подбор музыки</li>
+                        <li>Создание атмосферы</li>
+                        <li>Организация развлечений</li>
+                        <li>Поддержка настроения</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Заключение -->
+    <div class="roles-section" data-aos="fade-up">
+        <div class="section-header">
+            <h2 class="section-title">Найди свою роль</h2>
+            <p class="section-subtitle" style="max-width: 600px;">
+                Не нашел подходящую роль? Не беда! Напиши нам, и мы вместе подберем позицию, 
+                которая будет идеально соответствовать твоим интересам и навыкам.
+            </p>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <button class="btn" onclick="window.location.href='https://discord.gg/Ea9WccNpAk'">
+                <i class="fab fa-discord"></i> Обсудить роль в Discord
+            </button>
+        </div>
+    </div>
 </main>
 
+<!-- Футер -->
+<footer>
+    <div class="logo" style="justify-content: center; margin-bottom: 30px;">
+        <a href="/" class="logo-link">
+            <i class="fas fa-tractor"></i>
+            <span style="font-size: 2rem;">BANDA</span>
+        </a>
+    </div>
+    
+    <div class="footer-links">
+        <a href="index.html">Главная</a>
+        <a href="index.html#about">О сервере</a>
+        <a href="http://mods.banda-farm.ru:20011/all_mods_download?onlyActive=true" download>Моды</a>
+        <a href="https://docs.google.com/spreadsheets/d/13M02XdmQ9hI5PImNrTLIfE0CLQVwT6TXRePGisEwRj0/edit?gid=1257314286#gid=1257314286" target="_blank">План работы</a>
+        <a href="rules.html">Правила</a>
+        <a href="#">Роли</a>
+        <a href="index.html#contact">Сообщество</a>
+    </div>
+    
+    <div class="copyright">
+        <p>Farming Simulator 25 Сервер BANDA © 2024</p>
+        <p style="margin-top: 10px; font-size: 0.8rem;">Все права защищены</p>
+    </div>
+</footer>
+
+<!-- Подключаемые скрипты -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
 <script>
-  // Toggle mobile menu
-  const burger = document.getElementById('burger');
-  const navLinks = document.getElementById('navLinks');
-
-  burger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-  });
-
-  // Анимация появления блоков при скролле
-  const blocks = document.querySelectorAll('.rule-block');
-
-  function checkVisibility() {
-    const triggerBottom = window.innerHeight * 0.9;
-    blocks.forEach(block => {
-      const blockTop = block.getBoundingClientRect().top;
-      if(blockTop < triggerBottom) {
-        block.classList.add('visible');
-      }
+    // Инициализация AOS
+    AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100
     });
-  }
-  window.addEventListener('scroll', checkVisibility);
-  window.addEventListener('load', checkVisibility);
+    
+    // Бургер-меню
+    const burger = document.getElementById('burger');
+    const navLinks = document.getElementById('navLinks');
+    
+    burger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        burger.innerHTML = navLinks.classList.contains('active') 
+            ? '<i class="fas fa-times"></i>' 
+            : '<i class="fas fa-bars"></i>';
+    });
+    
+    // Закрытие меню при клике на ссылку
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            burger.innerHTML = '<i class="fas fa-bars"></i>';
+        });
+    });
+    
+    // Прогресс скролла
+    window.addEventListener('scroll', () => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        document.getElementById('scrollProgress').style.width = scrolled + '%';
+        
+        // Эффект при скролле для навбара
+        const navbar = document.getElementById('navbar');
+        if (window.scrollY > 100) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+    
+    // Функция для плавного скролла
+    function scrollToSection(sectionId) {
+        document.querySelector(sectionId).scrollIntoView({
+            behavior: 'smooth'
+        });
+    }
+    
+    // Плавный скролл для всех якорных ссылок
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            if (this.getAttribute('href') !== '#') {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId && targetId !== '#') {
+                    document.querySelector(targetId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    });
 </script>
 
 </body>
